@@ -34,5 +34,5 @@ The app should utilize GitHub's public API; either the v3 REST API or the v4 Gra
 Examples of the API call you'll likely need to make: 
 Search 
 
-https://developer.github.com/v3/search/
-https://api.github.com/search/users?q=example
+- https://developer.github.com/v3/search/
+- https://api.github.com/search/users?q=example
