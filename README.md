@@ -34,11 +34,9 @@ The app should utilize GitHub's public API; either the v3 REST API or the v4 Gra
 Examples of the API call you'll likely need to make: 
 Search 
 
-<<<<<<< HEAD
-https://developer.github.com/v3/search/
-https://api.github.com/search/users?q=example
-https://www.digitalocean.com/community/tutorials/how-to-build-custom-pagination-with-react
-=======
+
 - https://developer.github.com/v3/search/
 - https://api.github.com/search/users?q=example
->>>>>>> d7f899a030be030f4727d08990cc756c588ebb75
+- https://www.digitalocean.com/community/tutorials/how-to-build-custom-pagination-with-react
+- https://developer.github.com/v3/search/
+- https://api.github.com/search/users?q=example
