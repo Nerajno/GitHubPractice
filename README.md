@@ -21,7 +21,8 @@ It is not necessary to match the actual design of GitHub and we are not expectin
 
 # User Stories
 As a user :
-- [ ] I can search for users and see a paginated list of results. 
+- [ ] I can search for users 
+- [ ] I can see results should be in the form of a paginated list of results. 
 - [ ] I can navigate through the next and previous pages of the paginated results. 
 - [ ] I see the total count of search results. 
 - [ ] I see notable information for each search result, such as the description, star/follower count, profile pictures, etc.
