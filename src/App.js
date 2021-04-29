@@ -1,8 +1,8 @@
-import React, {  useState } from "react";
+import React, {  useState, Component } from "react";
 import "./App.css";
 // import { useDebounce } from "use-debounce";
 
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, CardDeck } from 'react-bootstrap';
 import Footer from "./Components/Footer";
 import Card from "./Components/Card";
 
@@ -58,8 +58,10 @@ function App(){
         </Navbar.Collapse>
       </Navbar>
       <div className="resultContainer">
+      <CardDeck>
        {users.length > 0 && 
           users.slice(0,100).map((user) => <Card key={user.id} {...user} />)}
+      </CardDeck>
       </div>
       <Footer />
        </div>
