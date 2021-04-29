@@ -39,7 +39,7 @@ function App(){
   return (
     <div className="App">
        <div className="main-container">
-       <Navbar bg="light" expand="lg">
+       <Navbar bg="light" expand="lg" className="fixed-top">
         <Navbar.Brand href="#home">Github Search</Navbar.Brand> 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -59,7 +59,7 @@ function App(){
       </Navbar>
       <div className="resultContainer">
        {users.length > 0 && 
-          users.slice(0,1000).map((user) => <Card key={user.id} {...user} />)}
+          users.slice(0,100).map((user) => <Card key={user.id} {...user} />)}
       </div>
       <Footer />
        </div>

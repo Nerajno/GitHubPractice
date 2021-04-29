@@ -13,11 +13,13 @@ code {
 }
 
 .main-container {
-  background-color:#007bff;
+  background-color:#d3dde7;
+  background-repeat: no-repeat;
+  background-size: 100vh;
+  
 }
 
 .footer {
-  margin-top: 0.8rem;
   background-color: #007bff;
   bottom: 0;
   left: 0;
@@ -28,4 +30,17 @@ code {
   font-weight: 600;
   text-decoration: none;
   position: absolute;
+}
+
+.resultContainer {
+  margin: auto; 
+  width: 80vw;
+  height: 100vh;
+  margin-top: 3vh;
+  /* display: flex; */
+}
+
+.card {
+  padding-bottom: 2vh;
+
 }
