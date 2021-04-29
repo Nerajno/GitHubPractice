@@ -18,7 +18,7 @@ function App(){
       .then(response => response.json())
       .then((data) => {
         setUsers(data.items)})
-        console.log(users[0]);
+        // console.log(users[0]);
   }
 
   const handleOnSubmit = (e) => { // Need to implement debounce
@@ -30,10 +30,11 @@ function App(){
   };
 
   const handleOnChange = (e) => {
-    console.log(e); 
+    // console.log(e); 
     setSearchTerm(e.target.value);
   };
 
+  console.log(users);
 
   return (
     <div className="App">
