@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import "./App.css";
-import { useDebounce } from "use-debounce";
+// import { useDebounce } from "use-debounce";
 
 import { Navbar, Nav } from 'react-bootstrap';
 import Footer from "./Components/Footer";
@@ -11,24 +11,26 @@ function App(){
   const API = process.env.REACT_APP_SEARCH_API;
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedSearchTerm] = useDebounce(searchTerm, 2000);
+  // const [debouncedSearchTerm] = useDebounce(searchTerm, 2000);
 
   const getUsers = (input) => {
       fetch(input)
       .then(response => response.json())
-      .then((data) => {console.log(data.items[0].html_url)
+      .then((data) => {
         setUsers(data.items)})
+        console.log(users[0]);
   }
 
   const handleOnSubmit = (e) => { // Need to implement debounce
     e.preventDefault();
-    if (debouncedSearchTerm) {
-      getUsers(API + debouncedSearchTerm);
+    if (searchTerm) {
+      getUsers(API + searchTerm);
       setSearchTerm("");
     }
   };
 
   const handleOnChange = (e) => {
+    console.log(e); 
     setSearchTerm(e.target.value);
   };
 
@@ -55,8 +57,8 @@ function App(){
         </Navbar.Collapse>
       </Navbar>
       <div className="resultContainer">
-       {/* {users.length > 0 &&
-          users.slice(0,1000).map((user) => <Card key={user.id} {...user} />)} */}
+       {users.length > 0 && 
+          users.slice(0,1000).map((user) => <Card key={user.id} {...user} />)}
       </div>
       <Footer />
        </div>
