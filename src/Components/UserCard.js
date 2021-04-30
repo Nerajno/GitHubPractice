@@ -1,8 +1,9 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 function UserCard(){
-
+  const userInfoApi = "stuff"
+  const [userInfo, setUserInfo] = useState([]);
 
 
 
@@ -15,17 +16,14 @@ function UserCard(){
   render() {
     return (
         <Card style={{ width: '18rem' }}>
-      {/* <Card.Img variant="top" src="" /> */}
+      <Card.Img variant="top" src="" />
       <Card.Body>
-        {/* <Card.Title>Name:{login}</Card.Title> */}
+        <Card.Title></Card.Title>
         <Card.Text>
           Some quick example text to build on the card title and make up the bulk of
           the card's content.
         </Card.Text>
-        <Card.Text>Followers{}</Card.Text>
-        <Card.Text>Following{}</Card.Text>
-          {/* <Card.Link href="#">{url.value}</Card.Link> */}
-        <Card.Link href="#">Another Link</Card.Link>
+        <Button variant="secondary">Show Profile</Button>
       </Card.Body>
     </Card>
       );
