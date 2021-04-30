@@ -2,7 +2,7 @@ import React, {  useState, Component } from "react";
 import "./App.css";
 // import { useDebounce } from "use-debounce";
 
-import { Navbar, Nav, CardDeck } from 'react-bootstrap';
+import { Navbar, Nav, CardGroup } from 'react-bootstrap';
 import Footer from "./Components/Footer";
 import Card from "./Components/Card";
 
@@ -34,7 +34,8 @@ function App(){
     setSearchTerm(e.target.value);
   };
 
-  console.log(users);
+  // console.log(users[0]
+  //   );
 
   return (
     <div className="App">
@@ -58,10 +59,11 @@ function App(){
         </Navbar.Collapse>
       </Navbar>
       <div className="resultContainer">
-      <CardDeck>
+      Current Users Found :{users.length}
+      <CardGroup>
        {users.length > 0 && 
           users.slice(0,100).map((user) => <Card key={user.id} {...user} />)}
-      </CardDeck>
+      </CardGroup>
       </div>
       <Footer />
        </div>
