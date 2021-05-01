@@ -6,7 +6,7 @@ import { Navbar, Nav, CardGroup } from 'react-bootstrap';
 import Footer from "./Components/Footer";
 // import UserCard from "./Components/UserCard";
 import TestCard from "./Components/TestCard";
-
+import Pagination from "./Components/Pagination";
 
 
 function App(){
@@ -22,12 +22,10 @@ function App(){
       .then((data) => {
         setFoundUsers(data.totalcount)
         setUsers(data.items)})
-        // console.log(users[0]);
   }
 
   const handleOnSubmit = (e) => { // Need to implement debounce
     e.preventDefault();
-    // console.log(debouncedSearchTerm);
     if (debouncedSearchTerm) {
       getUsers(API + debouncedSearchTerm);
       setSearchTerm("");
@@ -35,7 +33,6 @@ function App(){
   };
 
   const handleOnChange = (e) => {
-    // console.log(e); 
     setSearchTerm(e.target.value);
   };
 
@@ -65,6 +62,7 @@ function App(){
       </Navbar>
       <div className="resultContainer">
       Current Users Found : {foundUsers|| 0}
+      < Pagination />
       <CardGroup className="returnedCard">
        {users.length > 0 && 
           users.slice(0,100).map((user) => <TestCard key={user.id} {...user} />)}

@@ -36,8 +36,9 @@ code {
   margin: auto; 
   width: 80vw;
   height: 100vh;
-  margin-top: 15vh;
-  /* display: flex; */
+  margin-top: 15vh; 
+  /* need to fix the vh */
+ 
 }
 
 .returnedCard {
@@ -47,6 +48,7 @@ code {
 .card {
   padding-bottom: 2vh;
   justify-content: space-between;
+  margin: 2vh;
 }
 
 /* .card-group{
