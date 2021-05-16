@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import { useDebounce } from "use-debounce";
+import axios from 'axios';
 
 import { Navbar, Nav, CardGroup } from 'react-bootstrap';
 import Footer from "./Components/Footer";
@@ -36,8 +37,8 @@ function App(){
     setSearchTerm(e.target.value);
   };
 
-  // console.log(users[0]
-  //   );
+  console.log(users);
+  // let showFoundUsers  = foundUsers ? foundUsers.length : "0";
 
   return (
     <div className="App">
@@ -47,7 +48,7 @@ function App(){
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Docs</Nav.Link>
+            <Nav.Link href="https://github.com/Nerajno/GitHubPractice">Docs</Nav.Link>
           </Nav>
           <form onSubmit={handleOnSubmit}>
           <input
@@ -61,8 +62,8 @@ function App(){
         </Navbar.Collapse>
       </Navbar>
       <div className="resultContainer">
-      Current Users Found : {foundUsers|| 0}
-      < Pagination />
+      {/* Current Users Found : { showFoundUsers } */}
+      < Pagination props={users}/>
       <CardGroup className="returnedCard">
        {users.length > 0 && 
           users.slice(0,100).map((user) => <TestCard key={user.id} {...user} />)}
