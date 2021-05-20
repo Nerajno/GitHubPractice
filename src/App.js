@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { useDebounce } from "use-debounce";
 import axios from 'axios';
@@ -15,31 +15,38 @@ function App(){
   const [users, setUsers] = useState([]);
   const [foundUsers, setFoundUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedSearchTerm] = useDebounce(searchTerm, 2000);
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 1000);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage] = useState(12);
 
   const getUsers = (input) => {
       fetch(input)
       .then(response => response.json())
       .then((data) => {
-        setFoundUsers(data.totalcount)
+        console.log(data.total_count, data);
+        setFoundUsers(data.total_count)
         setUsers(data.items)})
   }
 
   const handleOnSubmit = (e) => { // Need to implement debounce
     e.preventDefault();
     if (debouncedSearchTerm) {
-      getUsers(API + debouncedSearchTerm);
+      getUsers(API + debouncedSearchTerm+ "&per_page=800");
       setSearchTerm("");
     }
   };
 
   const handleOnChange = (e) => {
-    setSearchTerm(e.target.value);
+    setSearchTerm(e.target.value); 
   };
 
-  console.log(users);
-  // let showFoundUsers  = foundUsers ? foundUsers.length : "0";
+   // Get current posts
+  //  const indexOfLastUser = currentPage * usersPerPage;
+  //  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  //  const currentUsers = users.slice(indexOfFirstPost, indexOfLastPost);
 
+  let showFoundUsers  = foundUsers ? foundUsers : "0";
+    console.log()
   return (
     <div className="App">
        <div className="main-container">
@@ -61,9 +68,9 @@ function App(){
           </form>
         </Navbar.Collapse>
       </Navbar>
-      <div className="resultContainer">
-      {/* Current Users Found : { showFoundUsers } */}
-      < Pagination props={users}/>
+      <div className="resultContainer container">
+      <p>Current Users Found : { showFoundUsers }  users </p> 
+      <Pagination props={users}/>
       <CardGroup className="returnedCard">
        {users.length > 0 && 
           users.slice(0,100).map((user) => <TestCard key={user.id} {...user} />)}
