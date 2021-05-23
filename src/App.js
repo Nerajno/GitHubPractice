@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { useDebounce } from "use-debounce";
-import axios from 'axios';
+// import axios from 'axios';
 
 import { Navbar, Nav, CardGroup } from 'react-bootstrap';
 import Footer from "./Components/Footer";
@@ -17,7 +17,7 @@ function App(){
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm] = useDebounce(searchTerm, 1000);
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(12);
+  const [usersPerPage, setUsersPerPage] = useState(12);
 
   const getUsers = (input) => {
       fetch(input)
@@ -45,7 +45,7 @@ function App(){
   //  const indexOfFirstUser = indexOfLastUser - usersPerPage;
   //  const currentUsers = users.slice(indexOfFirstPost, indexOfLastPost);
 
-  let showFoundUsers  = foundUsers ? foundUsers : "0";
+  let showFoundUsers  = foundUsers ? foundUsers.length : "0";
     console.log()
   return (
     <div className="App">
