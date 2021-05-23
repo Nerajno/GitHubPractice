@@ -36,15 +36,21 @@ code {
   margin: auto; 
   width: 80vw;
   height: 100vh;
-  margin-top: 3vh;
-  /* display: flex; */
+  margin-top: 15vh; 
+  /* need to fix the vh */
+ 
+}
+
+.returnedCard {
+  flex: none;
 }
 
 .card {
   padding-bottom: 2vh;
-
+  justify-content: space-between;
+  margin: 2vh;
 }
 
-.card-group{
-  
-}
+/* .card-group{
+  flex: 0 1;
+} */

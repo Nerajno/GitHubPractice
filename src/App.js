@@ -1,42 +1,52 @@
-import React, {  useState, Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-// import { useDebounce } from "use-debounce";
+import { useDebounce } from "use-debounce";
+// import axios from 'axios';
 
 import { Navbar, Nav, CardGroup } from 'react-bootstrap';
 import Footer from "./Components/Footer";
-import Card from "./Components/Card";
+// import UserCard from "./Components/UserCard";
+import TestCard from "./Components/TestCard";
+import Pagination from "./Components/Pagination";
 
 
 function App(){
   const API = process.env.REACT_APP_SEARCH_API;
   const [users, setUsers] = useState([]);
+  const [foundUsers, setFoundUsers] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  // const [debouncedSearchTerm] = useDebounce(searchTerm, 2000);
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 1000);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage, setUsersPerPage] = useState(12);
 
   const getUsers = (input) => {
       fetch(input)
       .then(response => response.json())
       .then((data) => {
+        console.log(data.total_count, data);
+        setFoundUsers(data.total_count)
         setUsers(data.items)})
-        // console.log(users[0]);
   }
 
   const handleOnSubmit = (e) => { // Need to implement debounce
     e.preventDefault();
-    if (searchTerm) {
-      getUsers(API + searchTerm);
+    if (debouncedSearchTerm) {
+      getUsers(API + debouncedSearchTerm+ "&per_page=800");
       setSearchTerm("");
     }
   };
 
   const handleOnChange = (e) => {
-    // console.log(e); 
-    setSearchTerm(e.target.value);
+    setSearchTerm(e.target.value); 
   };
 
-  // console.log(users[0]
-  //   );
-
+   // Get current posts
+   const indexOfLastUser = currentPage * usersPerPage;
+   const indexOfFirstUser = indexOfLastUser - usersPerPage;
+   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+ 
+  let showFoundUsers  = foundUsers ;
+    console.log()
   return (
     <div className="App">
        <div className="main-container">
@@ -45,7 +55,7 @@ function App(){
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Docs</Nav.Link>
+            <Nav.Link href="https://github.com/Nerajno/GitHubPractice">Docs</Nav.Link>
           </Nav>
           <form onSubmit={handleOnSubmit}>
           <input
@@ -58,11 +68,12 @@ function App(){
           </form>
         </Navbar.Collapse>
       </Navbar>
-      <div className="resultContainer">
-      Current Users Found :{users.length}
-      <CardGroup>
+      <div className="resultContainer container">
+      <p>Current Users Found : { showFoundUsers }  users </p> 
+      <Pagination props={users}/>
+      <CardGroup className="returnedCard">
        {users.length > 0 && 
-          users.slice(0,100).map((user) => <Card key={user.id} {...user} />)}
+          users.slice(0,100).map((user) => <TestCard key={user.id} {...user} />)}
       </CardGroup>
       </div>
       <Footer />
