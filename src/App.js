@@ -13,7 +13,7 @@ import Pagination from "./Components/Pagination";
 function App(){
   const API = process.env.REACT_APP_SEARCH_API;
   const [users, setUsers] = useState([]);
-  const [foundUsers, setFoundUsers] = useState([]);
+  const [foundUsers, setFoundUsers] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm] = useDebounce(searchTerm, 1000);
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,11 +41,11 @@ function App(){
   };
 
    // Get current posts
-  //  const indexOfLastUser = currentPage * usersPerPage;
-  //  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  //  const currentUsers = users.slice(indexOfFirstPost, indexOfLastPost);
-
-  let showFoundUsers  = foundUsers ? foundUsers.length : "0";
+   const indexOfLastUser = currentPage * usersPerPage;
+   const indexOfFirstUser = indexOfLastUser - usersPerPage;
+   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+ 
+  let showFoundUsers  = foundUsers ;
     console.log()
   return (
     <div className="App">
