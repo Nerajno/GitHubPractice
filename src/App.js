@@ -46,7 +46,7 @@ function App(){
    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
  
   let showFoundUsers  = foundUsers ;
-    console.log()
+  
   return (
     <div className="App">
        <div className="main-container">
@@ -70,7 +70,7 @@ function App(){
       </Navbar>
       <div className="resultContainer container">
       <p>Current Users Found : { showFoundUsers }  users </p> 
-      <Pagination props={users}/>
+      <Pagination props={currentUsers}/>
       <CardGroup className="returnedCard">
        {users.length > 0 && 
           users.slice(0,100).map((user) => <TestCard key={user.id} {...user} />)}
