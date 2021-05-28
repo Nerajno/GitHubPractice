@@ -21,7 +21,9 @@ function App(){
 
   const getUsers = (input) => {
       fetch(input)
-      .then(response => response.json())
+      .then(response => {
+        console.log(...response.headers.entries());
+        return response.json()})
       .then((data) => {
         console.log(data.total_count, data);
         setFoundUsers(data.total_count)
@@ -31,7 +33,7 @@ function App(){
   const handleOnSubmit = (e) => { // Need to implement debounce
     e.preventDefault();
     if (debouncedSearchTerm) {
-      getUsers(API + debouncedSearchTerm+ "&per_page=800");
+      getUsers(API + debouncedSearchTerm+ "&per_page=12");
       setSearchTerm("");
     }
   };
