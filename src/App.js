@@ -21,11 +21,9 @@ function App(){
 
   const getUsers = (input) => {
       fetch(input)
-      .then(response => {
-        console.log(...response.headers.entries());
-        return response.json()})
+      .then(response => response.json())
       .then((data) => {
-        console.log(data.total_count, data);
+        console.log(data);
         setFoundUsers(data.total_count)
         setUsers(data.items)})
   }
@@ -33,7 +31,8 @@ function App(){
   const handleOnSubmit = (e) => { // Need to implement debounce
     e.preventDefault();
     if (debouncedSearchTerm) {
-      getUsers(API + debouncedSearchTerm+ "&per_page=12");
+      setCurrentPage(1);      
+      getUsers(API + debouncedSearchTerm+"&per_page=12&page="+ currentPage);
       setSearchTerm("");
     }
   };
@@ -42,10 +41,15 @@ function App(){
     setSearchTerm(e.target.value); 
   };
 
+  const updatePage = (page) => {
+    setCurrentPage(page);
+    getUsers(API + debouncedSearchTerm+ "&per_page=12&page=" + currentPage);
+  };
+
    // Get current posts
-   const indexOfLastUser = currentPage * usersPerPage;
-   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+  //  const indexOfLastUser = currentPage * usersPerPage;
+  //  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  //  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
  
   let showFoundUsers  = foundUsers ;
   
@@ -72,7 +76,7 @@ function App(){
       </Navbar>
       <div className="resultContainer container">
       <p>Current Users Found : { showFoundUsers }  users </p> 
-      <Pagination props={currentUsers}/>
+      <Pagination totalUsersFound={foundUsers} currentPage={currentPage} updatePage={updatePage} usersPerPage={usersPerPage} />
       <CardGroup className="returnedCard">
        {users.length > 0 && 
           users.slice(0,100).map((user) => <TestCard key={user.id} {...user} />)}
