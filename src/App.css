@@ -21,7 +21,13 @@
   color: white;
 }
 
+/* .pagination {
+  width: fit-content;
+} */
 
-.cardgroup {
-  
+#createdNavBtns {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

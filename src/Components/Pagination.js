@@ -1,4 +1,5 @@
 import React from 'react';
+
 // import Pagination from 'react-bootstrap/Pagination';
 
 //firstPage lastPage
@@ -16,7 +17,7 @@ return navList;
 const Pagination = (props) => {
   return (
     <nav>
-       <ul className='pagination'>
+      <ul className='pagination' id='createdNavBtns'>
       <NavButtons {...props}/>
       </ul> 
    </nav>

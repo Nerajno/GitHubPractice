@@ -25,11 +25,12 @@ code {
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: center;
   font-style: inherit;
   font-weight: 600;
   text-decoration: none;
   position: absolute;
+  justify-content: center;
+  align-items: center;
 }
 
 .resultContainer {
@@ -51,6 +52,3 @@ code {
   margin: 2vh;
 }
 
-/* .card-group{
-  flex: 0 1;
-} */
