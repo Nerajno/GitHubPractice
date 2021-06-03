@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { useDebounce } from "use-debounce";
 // import axios from 'axios';
@@ -23,7 +23,7 @@ function App(){
       fetch(input)
       .then(response => response.json())
       .then((data) => {
-        console.log(data.total_count, data);
+        console.log(data);
         setFoundUsers(data.total_count)
         setUsers(data.items)})
   }
@@ -31,7 +31,8 @@ function App(){
   const handleOnSubmit = (e) => { // Need to implement debounce
     e.preventDefault();
     if (debouncedSearchTerm) {
-      getUsers(API + debouncedSearchTerm+ "&per_page=800");
+      setCurrentPage(1);      
+      getUsers(API + debouncedSearchTerm+"&per_page=12&page="+ currentPage);
       setSearchTerm("");
     }
   };
@@ -40,13 +41,18 @@ function App(){
     setSearchTerm(e.target.value); 
   };
 
-   // Get current posts
-   const indexOfLastUser = currentPage * usersPerPage;
-   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+  const updatePage = (page) => {
+    setCurrentPage(page);
+    getUsers(API + debouncedSearchTerm+ "&per_page=12&page=" + currentPage);
+  };
+
+  // Get current posts
+  //  const indexOfLastUser = currentPage * usersPerPage;
+  //  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  //  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
  
   let showFoundUsers  = foundUsers ;
-    console.log()
+  
   return (
     <div className="App">
        <div className="main-container">
@@ -70,7 +76,7 @@ function App(){
       </Navbar>
       <div className="resultContainer container">
       <p>Current Users Found : { showFoundUsers }  users </p> 
-      <Pagination props={users}/>
+      <Pagination totalUsersFound={foundUsers} currentPage={currentPage} updatePage={updatePage} usersPerPage={usersPerPage} />
       <CardGroup className="returnedCard">
        {users.length > 0 && 
           users.slice(0,100).map((user) => <TestCard key={user.id} {...user} />)}
