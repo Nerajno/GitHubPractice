@@ -46,7 +46,7 @@ function App(){
     getUsers(API + debouncedSearchTerm+ "&per_page=12&page=" + currentPage);
   };
 
-   // Get current posts
+  // Get current posts
   //  const indexOfLastUser = currentPage * usersPerPage;
   //  const indexOfFirstUser = indexOfLastUser - usersPerPage;
   //  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
