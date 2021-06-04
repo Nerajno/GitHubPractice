@@ -4,10 +4,10 @@ import React from 'react';
 
 //firstPage lastPage
 
-const NavButtons = (props) => {
+const NavButtons = (props) => { 
 let navList = [];
 for( let i = 0; (i * props.usersPerPage) < props.totalUsersFound; i++){
-  const page = i+1;
+    const page = i+1;
        navList.push(<li className="page-item"><button onClick={() => {props.updatePage(page)}}>{page}</button></li>);
       //  key=props.id to fix please
      }

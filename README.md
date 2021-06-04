@@ -39,3 +39,5 @@ Search
 - https://developer.github.com/v3/search/
 - https://api.github.com/search/users?q=example
 - https://www.digitalocean.com/community/tutorials/how-to-build-custom-pagination-with-react
+- https://academind.com/tutorials/reactjs-pagination/
+
